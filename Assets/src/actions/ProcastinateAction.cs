@@ -10,6 +10,7 @@ public class ProcastinateAction : BaseAction
 
     public override void Initialize()
     {
+        totemPosition = FindManager.getTotemPosition();
         finished = false;
         inTotem = false;
     }

@@ -6,7 +6,7 @@ public abstract class BaseAction
     protected Villager villager;
     protected int repetitions;
     protected ActionEnum actionType;
-    protected static Vector3 totemPosition = FindManager.getTotem();
+    protected static Vector3 totemPosition;// = FindManager.getTotemPosition();
 
     private bool markedToFinish = false;
 

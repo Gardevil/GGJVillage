@@ -19,4 +19,9 @@ public class Villager : MonoBehaviour {
     {
         this.onGodDuty = onGodDuty;
     }
+
+    public bool isOnGodDuty()
+    {
+        return onGodDuty;
+    }
 }

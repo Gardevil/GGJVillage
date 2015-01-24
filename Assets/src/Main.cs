@@ -20,15 +20,31 @@ public class Main : MonoBehaviour {
             villagers.Add(vill);
             ActionManager.AddAction(vill, ActionEnum.PROCASTINATE, 1, false);
         }
+
+        // creamos el mapa
+        FindManager.SetMap(MapGenerator.Generate());
 	}
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            Villager vill = villagers[Random.Range(0, villagers.Count)];
-            ActionManager.AddAction(vill, ActionEnum.CHOP, 3, true);
+            List<Villager> idleVill = villagers.FindAll(v => !v.isOnGodDuty());
+            if (idleVill.Count > 0)
+            {
+                Villager vill = idleVill[Random.Range(0, idleVill.Count)];
+                ActionManager.AddAction(vill, ActionEnum.CHOP, 3, true);   
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            List<Villager> idleVill = villagers.FindAll(v => !v.isOnGodDuty());
+            if (idleVill.Count > 0)
+            {
+                Villager vill = idleVill[Random.Range(0, idleVill.Count)];
+                ActionManager.AddAction(vill, ActionEnum.FARM, 3, true);
+            }
         }
 	}
 }

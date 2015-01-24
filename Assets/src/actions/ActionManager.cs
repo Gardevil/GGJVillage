@@ -17,6 +17,8 @@ public class ActionManager : MonoBehaviour {
         enumTypeMap = new Dictionary<ActionEnum, Type>();
         enumTypeMap.Add(ActionEnum.CHOP, typeof(ChopAction));
         enumTypeMap.Add(ActionEnum.PROCASTINATE, typeof(ProcastinateAction));
+        enumTypeMap.Add(ActionEnum.FARM, typeof(FarmAction));
+
         instance = this;
 	}
 
@@ -46,7 +48,7 @@ public class ActionManager : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        Debug.Log(activities.Keys.Count);
+        //Debug.Log(activities.Keys.Count);
         foreach (Villager vill in activities.Keys)
         {
             List<BaseAction> actionList = activities[vill];
@@ -72,6 +74,10 @@ public class ActionManager : MonoBehaviour {
 
     private BaseAction GetAction(Villager villager, ActionEnum action, int repetitions)
     {
+        if (!enumTypeMap.ContainsKey(action))
+        {
+            throw new Exception("Acción no mapeada: " + action);
+        }
         BaseAction result = (BaseAction)Activator.CreateInstance(enumTypeMap[action]);
         result.SetData(villager, repetitions, action);
         return result;
