@@ -1,0 +1,33 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public abstract class BaseAction
+{
+    protected Villager villager;
+    protected int repetitions;
+    protected ActionEnum actionType;
+    protected static Vector3 totemPosition = FindManager.getTotem();
+
+    private bool markedToFinish = false;
+
+    public void SetData(Villager villager, int repetitions, ActionEnum actionType)
+    {
+        this.villager = villager;
+        this.repetitions = repetitions;
+        this.actionType = actionType;
+    }
+
+    public abstract void Initialize();
+    public abstract void Update();
+    public abstract bool IsFinished();
+
+    protected abstract void Finishing();
+    public void Finish()
+    {/// Con esto evitamos que se haga la finalizacion varias veces
+        if (!markedToFinish)
+        {
+            markedToFinish = true;
+            Finishing();
+        }
+    }
+}
