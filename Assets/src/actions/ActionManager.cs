@@ -9,11 +9,13 @@ public class ActionManager : MonoBehaviour {
 
     private Dictionary<ActionEnum, Type> enumTypeMap;
 
-    private Dictionary<Villager, List<BaseAction>> activities;
+    //private Dictionary<Villager, List<BaseAction>> activities;
+    private Dictionary<Villager, BaseAction> activities;
 
 	// Use this for initialization
 	void Start () {
-        activities = new Dictionary<Villager, List<BaseAction>>();
+        //activities = new Dictionary<Villager, List<BaseAction>>();
+        activities = new Dictionary<Villager, BaseAction>();
         enumTypeMap = new Dictionary<ActionEnum, Type>();
         enumTypeMap.Add(ActionEnum.CHOP, typeof(ChopAction));
         enumTypeMap.Add(ActionEnum.PROCASTINATE, typeof(ProcastinateAction));

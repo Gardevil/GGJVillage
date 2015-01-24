@@ -37,8 +37,8 @@ public class MapGenerator : MonoBehaviour {
         map.AddFarmField((GameObject)GameObject.Instantiate(farmfieldPalette, new Vector3(-5, 5, 0), Quaternion.identity));
         map.AddFarmField((GameObject)GameObject.Instantiate(farmfieldPalette, new Vector3(4, -4, 0), Quaternion.identity));
 
-        /// añadimos dos campos
-        map.AddFarmField((GameObject)GameObject.Instantiate(farmfieldPalette, new Vector3(-5, 5, 0), Quaternion.identity));
+        /// añadimos almacen
+        map.SetWarehouse((GameObject)GameObject.Instantiate(warehousePalette, new Vector3(10, 0, 0), Quaternion.identity));
 
 
         return map;
