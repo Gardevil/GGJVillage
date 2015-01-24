@@ -10,7 +10,11 @@ public class Main : MonoBehaviour {
     List<Villager> villagers;
 
 	// Use this for initialization
-	void Start () {
+    void Start()
+    {
+        // creamos el mapa
+        FindManager.SetMap(MapGenerator.Generate());
+
         villagers = new List<Villager>();
 	    // Creamos varios ciudadanos
         for (int i = 0; i < numVillagers; ++i)
@@ -21,8 +25,6 @@ public class Main : MonoBehaviour {
             ActionManager.AddAction(vill, ActionEnum.PROCASTINATE, 1, false);
         }
 
-        // creamos el mapa
-        FindManager.SetMap(MapGenerator.Generate());
 	}
 
     // Update is called once per frame

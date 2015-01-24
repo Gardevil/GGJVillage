@@ -7,35 +7,30 @@ public class Villager : MonoBehaviour {
 
 	Movement movement;
 
-
 	public int lifes{
 		get{
-			return lifes;
+            return mLifes;
 		}
 
 	}
 
 	public int food{
 		get{
-			return food;
+            return mFood;
 		}
 	}
 	public int stamina{
 		get{
-			return stamina;
+            return mStamina;
 		}
 	}
-
-
-
-
 	private int mLifes;
 	private int mFood;
 	private int mStamina;
 
 	public bool standing{
 		get{
-			return movement.standing();
+			return movement.standing;
 		}
 	}
 
@@ -43,9 +38,9 @@ public class Villager : MonoBehaviour {
 	void Start () {
         onGodDuty = false;
 		movement = GetComponent<Movement> ();
-		lifes = 5;
-		food = 5;
-		stamina = 5;
+        mLifes = 5;
+		mFood = 5;
+		mStamina = 5;
 	}
 	
 	// Update is called once per frame
@@ -59,19 +54,19 @@ public class Villager : MonoBehaviour {
     }
 
 	public void moveTo(Vector3 target){
-		movement.MoveTo(target);
+        movement.moveTo(target);
 	}
 
 	public void moveToWareHouse(){
-		movement.MoveTo (FindManager.getWareHouse ());
+        movement.moveTo(FindManager.getWarehousePosition());
 	}
 
 	public void moveToTotem(){
-		movement.MoveTo (FindManager.getTotem ());
+        movement.moveTo(FindManager.getTotemPosition());
 	}
 
-
-
-
-	
+    internal bool isOnGodDuty()
+    {
+        return onGodDuty;
+    }
 }

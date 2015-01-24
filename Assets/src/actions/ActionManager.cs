@@ -33,9 +33,8 @@ public class ActionManager : MonoBehaviour {
     /// <param name="godOrder">la acción la dictamina el jugador</param>
     public static void AddAction(Villager villager, ActionEnum action, int repetitions, bool godOrder)
     {
-        if (!instance.activities.ContainsKey(villager))
+        /*if (!instance.activities.ContainsKey(villager))
         {/// Si el ciudadano no estaba asignado, creamos la estructura
-            instance.activities.Add(villager, new List<BaseAction>());
         }
         else if (instance.activities[villager].Count>0)
         {/// Si el ciudadano estaba haciendo cosas, se le dice que acabe
@@ -44,7 +43,15 @@ public class ActionManager : MonoBehaviour {
             instance.activities[villager].RemoveRange(1, instance.activities[villager].Count - 1);
         }
         villager.SetBusy(godOrder);
-        instance.activities[villager].Add(instance.GetAction(villager, action, repetitions));
+        instance.activities[villager].Add(instance.GetAction(villager, action, repetitions));*/
+
+        ////// SIN LISTAS
+        if (instance.activities.ContainsKey(villager))
+        {
+            instance.activities.Remove(villager);
+        }
+        villager.SetBusy(godOrder);
+        instance.activities.Add(villager, instance.GetAction(villager, action, repetitions));
     }
 	
 	// Update is called once per frame
@@ -53,7 +60,7 @@ public class ActionManager : MonoBehaviour {
         //Debug.Log(activities.Keys.Count);
         foreach (Villager vill in activities.Keys)
         {
-            List<BaseAction> actionList = activities[vill];
+            /*List<BaseAction> actionList = activities[vill];
             /// Si tiene acciones por hacer
             if (actionList.Count > 0)
             {
@@ -70,6 +77,14 @@ public class ActionManager : MonoBehaviour {
                     /// comienza la otra acción
                     actionList[0].Initialize();
                 }
+            }*/
+
+            ///// SIN LISTAS
+            BaseAction action = activities[vill];
+            action.Update();
+            if (action.IsFinished())
+            {
+                AddAction(vill, ActionEnum.PROCASTINATE, 3, false);
             }
         }
     }
@@ -82,6 +97,7 @@ public class ActionManager : MonoBehaviour {
         }
         BaseAction result = (BaseAction)Activator.CreateInstance(enumTypeMap[action]);
         result.SetData(villager, repetitions, action);
+        result.Initialize();
         return result;
     }
 }
