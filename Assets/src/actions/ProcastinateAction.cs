@@ -10,7 +10,7 @@ public class ProcastinateAction : BaseAction
 
     public override void Initialize()
     {
-        totemPosition = FindManager.getTotemPosition();
+        targetPosition = FindManager.getTotemPosition();
         finished = false;
         inTotem = false;
     }
@@ -21,8 +21,8 @@ public class ProcastinateAction : BaseAction
         {
             /// si no ha llegado a la posición del chamán, va
             float stepSpeed = speed * Time.deltaTime;
-            villager.transform.position = Vector3.MoveTowards(villager.transform.position, totemPosition, stepSpeed);
-            inTotem = villager.transform.position == totemPosition;
+            villager.transform.position = Vector3.MoveTowards(villager.transform.position, targetPosition, stepSpeed);
+            inTotem = villager.transform.position == targetPosition;
         }
         else
         {/// se mueve al azar

@@ -13,9 +13,13 @@ public class FindManager : MonoBehaviour
 
     private Map currMap;
 
-    void Start()
+    void Awake()
     {
         instance = this;
+    }
+
+    void Start()
+    {
         tree = new GameObject();
         tree.AddComponent<Resource>();
         tree.transform.position = new Vector3(3.5f, 3.5f, 0);
