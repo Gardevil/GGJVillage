@@ -21,6 +21,11 @@ public abstract class BaseAction
     public abstract void Update();
     public abstract bool IsFinished();
 
+    public virtual ActionEnum GetNextAction()
+    {
+        return ActionEnum.PROCASTINATE;
+    }
+
     protected abstract void Finishing();
     public void Finish()
     {/// Con esto evitamos que se haga la finalizacion varias veces

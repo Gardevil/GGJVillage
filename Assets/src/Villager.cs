@@ -11,7 +11,10 @@ public class Villager : MonoBehaviour {
 		get{
             return mLifes;
 		}
-
+        set
+        {
+            mLifes = value;
+        }
 	}
 
 	public int food{
@@ -34,10 +37,14 @@ public class Villager : MonoBehaviour {
 		}
 	}
 
+    void Awake()
+    {
+        movement = GetComponent<Movement>();
+    }
+
 	// Use this for initialization
 	void Start () {
         onGodDuty = false;
-		movement = GetComponent<Movement> ();
         mLifes = 5;
 		mFood = 5;
 		mStamina = 5;
@@ -45,7 +52,11 @@ public class Villager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        if (mLifes <= 0)
+        {
+            Destroy(base.gameObject);
+            Debug.Log("HE MUERTO!");
+        }
 	}
 
     internal void SetBusy(bool onGodDuty)

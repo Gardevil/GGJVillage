@@ -55,9 +55,17 @@ public class FindManager : MonoBehaviour
         return res;
     }
 
-    public static Vector3 getClosestVillager()
+    public static Villager getClosestVillager(Villager excluded)
     {
-        return Vector3.zero;
+        /// si solo hay un aldeano, el objetivo será él mismo y se suicidará
+        Villager vill = excluded;
+        IEnumerable<GameObject> villagers = instance.currMap.getVillagers().Where(v => v != excluded.gameObject);
+        if (villagers.Any())
+        {
+            GameObject go = villagers.OrderBy(v => (v.transform.position - excluded.transform.position).sqrMagnitude).First();
+            vill = go.GetComponent<Villager>();
+        }
+        return vill;
     }
 
     public static Resource getClosestTree(Vector3 position)

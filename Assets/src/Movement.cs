@@ -20,10 +20,14 @@ public class Movement : MonoBehaviour
 
     private bool mStanding;
     // Use this for initialization
+    void Awake()
+    {
+        navAgent = GetComponent<NavMeshAgent>();
+    }
+
     void Start()
     {
         mStanding = true;
-        navAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame

@@ -10,6 +10,8 @@ public class Map {
     GameObject warehouse;
     List<GameObject> pools = new List<GameObject>();
 
+    List<GameObject> villagers = new List<GameObject>();
+
     public void AddTree(GameObject tree)
     {
         trees.Add(tree);
@@ -56,5 +58,15 @@ public class Map {
     public Vector3 GetWarehousePosition()
     {
         return warehouse.transform.position;
+    }
+
+    public void AddVillager(GameObject vill)
+    {
+        villagers.Add(vill);
+    }
+
+    internal List<GameObject> getVillagers()
+    {
+        return villagers;
     }
 }

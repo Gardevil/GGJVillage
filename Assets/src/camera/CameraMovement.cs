@@ -17,11 +17,9 @@ public class CameraMovement : MonoBehaviour {
         float x = transform.position.x + Input.GetAxis("Horizontal");
         x = Math.Max(-WidthBound, Math.Min(WidthBound, x));
 
-        /// cambiar position.y por position.z en el top down
-        float z=transform.position.y+Input.GetAxis("Vertical");
+        float z=transform.position.z+Input.GetAxis("Vertical");
         z = Math.Max(-HeightBound, Math.Min(HeightBound, z));
 
-        //transform.position = new Vector3(x, transform.position.y, z);
-        transform.position = new Vector3(x, z, transform.position.z);
+        transform.position = new Vector3(x, transform.position.y, z);
 	}
 }

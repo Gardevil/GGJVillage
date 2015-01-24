@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class ActionManager : MonoBehaviour {
 
@@ -20,6 +21,7 @@ public class ActionManager : MonoBehaviour {
         enumTypeMap.Add(ActionEnum.CHOP, typeof(ChopAction));
         enumTypeMap.Add(ActionEnum.PROCASTINATE, typeof(ProcastinateAction));
         enumTypeMap.Add(ActionEnum.FARM, typeof(FarmAction));
+        enumTypeMap.Add(ActionEnum.KILL, typeof(KillAction));
 
         instance = this;
 	}
@@ -57,7 +59,14 @@ public class ActionManager : MonoBehaviour {
 	// Update is called once per frame
     void Update()
     {
-        //Debug.Log(activities.Keys.Count);
+        /// Quitamos los muertos
+        foreach (var s in activities.Where(p => p.Key.lifes <= 0).ToList())
+        {
+            activities.Remove(s.Key);
+        }
+
+        Dictionary<Villager, ActionEnum> aux = new Dictionary<Villager, ActionEnum>();
+        /// pasamos por las acciones
         foreach (Villager vill in activities.Keys)
         {
             /*List<BaseAction> actionList = activities[vill];
@@ -84,8 +93,12 @@ public class ActionManager : MonoBehaviour {
             action.Update();
             if (action.IsFinished())
             {
-                AddAction(vill, ActionEnum.PROCASTINATE, 3, false);
+                aux.Add(vill, action.GetNextAction());
             }
+        }
+        foreach (Villager v in aux.Keys)
+        {
+            AddAction(v, aux[v], 3, false);
         }
     }
 
