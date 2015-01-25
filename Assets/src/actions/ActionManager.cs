@@ -22,6 +22,7 @@ public class ActionManager : MonoBehaviour {
         enumTypeMap.Add(ActionEnum.PROCASTINATE, typeof(ProcastinateAction));
         enumTypeMap.Add(ActionEnum.FARM, typeof(FarmAction));
         enumTypeMap.Add(ActionEnum.KILL, typeof(KillAction));
+        enumTypeMap.Add(ActionEnum.DANCE, typeof(DanceAction));
 
         instance = this;
 	}
@@ -50,6 +51,7 @@ public class ActionManager : MonoBehaviour {
         ////// SIN LISTAS
         if (instance.activities.ContainsKey(villager))
         {
+            instance.activities[villager].Finish();
             instance.activities.Remove(villager);
         }
         villager.SetBusy(godOrder);
@@ -90,10 +92,13 @@ public class ActionManager : MonoBehaviour {
 
             ///// SIN LISTAS
             BaseAction action = activities[vill];
-            action.Update();
             if (action.IsFinished())
             {
                 aux.Add(vill, action.GetNextAction());
+            }
+            else
+            {
+                action.Update();
             }
         }
         foreach (Villager v in aux.Keys)

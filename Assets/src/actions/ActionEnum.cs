@@ -6,6 +6,6 @@ public enum ActionEnum {
     KILL,
     CHOP,
     FARM,
-    PRAY,
+    DANCE,
     REST
 }

@@ -31,6 +31,7 @@ public abstract class BaseAction
     {/// Con esto evitamos que se haga la finalizacion varias veces
         if (!markedToFinish)
         {
+            villager.moveTo(villager.gameObject);
             markedToFinish = true;
             Finishing();
         }
