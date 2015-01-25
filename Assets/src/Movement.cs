@@ -73,5 +73,12 @@ public class Movement : MonoBehaviour
         navAgent.SetDestination(targetObject.transform.position);
         this.targetObject = targetObject;
         mStanding = false;
-    }    
+    }
+
+    public void stop()
+    {
+        navAgent.Stop(true);
+        targetObject = null;
+        mStanding = false;
+    }
 }

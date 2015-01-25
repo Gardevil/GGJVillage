@@ -4,7 +4,7 @@ using System.Collections;
 public class ProcastinateAction : BaseAction
 {
     bool finished;
-    float timeToGetBored = 10;///segundos
+    float timeToGetBored = 30;///segundos
     bool inTotem;
 
     public override void Initialize()
@@ -25,7 +25,12 @@ public class ProcastinateAction : BaseAction
             /// espera hasta aburrirse
             if (timeToGetBored > 0)
             {
+                float prev = timeToGetBored;
                 timeToGetBored -= Time.deltaTime;
+                if (prev > 3 && timeToGetBored <= 3)
+                {
+                    villager.gameObject.GetComponent<Speaker>().SpeakUp("Me Booooring...", 2.5f);
+                }
             }
             if (timeToGetBored <= 0)
             {

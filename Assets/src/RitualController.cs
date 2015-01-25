@@ -46,6 +46,45 @@ public class RitualController : MonoBehaviour, IEventListener
         }
     }
 
+    void OnGUI()
+    {
+        string timeLeft = "Time Left: " + (int)GetTimeToEclipse();
+        string wood = "Wood: " + GetCurrentWood() + "/" + woodNeeded;
+        string food = "Food: " + GetCurrentFood() + "/" + foodNeeded;
+        //Debug.Log(timeLeft + ", " + wood + ", " + food);
+        Color original = GUI.contentColor;
+        GUI.contentColor = Color.black;
+        GUIStyle style = GUI.skin.customStyles[0];
+        Vector2 screenPos = new Vector2(Screen.width, Screen.height);
+
+        Vector2 size = style.CalcSize(new GUIContent(timeLeft));
+        Vector2 finalPos = screenPos * 0.05f - size * 0.5f;
+        Rect r = new Rect(finalPos.x, finalPos.y, size.x, size.y * 1.5f);
+        DrawQuad(r, Color.white);
+        GUI.Label(r, timeLeft);
+
+        size = style.CalcSize(new GUIContent(wood));
+        finalPos = new Vector2(screenPos.x * 0.05f,screenPos.y * 0.075f)  - size * 0.5f;
+        r = new Rect(finalPos.x, finalPos.y, size.x, size.y * 1.5f);
+        DrawQuad(r, Color.white);
+        GUI.Label(r, wood);
+
+        size = style.CalcSize(new GUIContent(food));
+        finalPos = new Vector2(screenPos.x * 0.05f, screenPos.y * 0.1f) - size * 0.5f;
+        r = new Rect(finalPos.x, finalPos.y, size.x, size.y * 1.5f);
+        DrawQuad(r, Color.white);
+        GUI.Label(r, food);
+    }
+
+    private void DrawQuad(Rect position, Color color)
+    {
+        Texture2D texture = new Texture2D(1, 1);
+        texture.SetPixel(0, 0, color);
+        texture.Apply();
+        GUI.skin.box.normal.background = texture;
+        GUI.Box(position, GUIContent.none);
+    }
+
     public float GetTimeToEclipse()
     {
         return actualTimeToEclipse;

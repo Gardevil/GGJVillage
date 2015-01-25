@@ -22,7 +22,7 @@ public class Main : MonoBehaviour
         // Creamos varios ciudadanos
         for (int i = 0; i < numVillagers; ++i)
         {
-            GameObject go = (GameObject)GameObject.Instantiate(villagerPalette, new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0), Quaternion.identity);
+            GameObject go = (GameObject)GameObject.Instantiate(villagerPalette, new Vector3(Random.Range(-5f, 5f), 1, Random.Range(-5f, 5f)), Quaternion.identity);
             Villager vill = go.GetComponent<Villager>();
             map.AddVillager(go);
             ActionManager.AddAction(vill, ActionEnum.PROCASTINATE, 1, false);
@@ -39,20 +39,20 @@ public class Main : MonoBehaviour
             Application.Quit();
             Debug.Log("JUEGO PERDIDO POR ANIQUILACIÓN!!!");
         }
-        else if (ritualController.GetTimeToEclipse()<=0)
+        else if (ritualController.GetTimeToEclipse() <= 0)
         {
             if (ritualController.IsReady())
             {
                 Application.Quit();
                 Debug.Log("JUEGO GANADO!!! :-)");
             }
-            else 
+            else
             {
                 Application.Quit();
                 Debug.Log("JUEGO PERDIDO POR TIEMPO/FALTA DE RECURSOS!!!");
             }
         }
-
+        /*
         if (Input.GetKeyDown(KeyCode.C))
         {
             List<GameObject> idleVill = map.getVillagers().FindAll(v => !v.GetComponent<Villager>().isOnGodDuty());
@@ -81,11 +81,31 @@ public class Main : MonoBehaviour
                     ActionManager.AddAction(go.GetComponent<Villager>(), ActionEnum.DANCE, 1, true);
                 }
             }
-        }
+        }*/
+    }
+    public List<GameObject> getAll()
+    {
+        return map.getVillagers();
+    }
 
-        string timeLeft = "Time Left: " + ritualController.GetTimeToEclipse();
-        string woodNeeded = "Wood: " + ritualController.GetCurrentWood() + "/" + ritualController.woodNeeded;
-        string foodNeeded = "Food: " + ritualController.GetCurrentFood() + "/" + ritualController.foodNeeded;
-        Debug.Log(timeLeft + ", " + woodNeeded + ", " + foodNeeded);
+    public Villager getRandomOccupied()
+    {
+        List<GameObject> occVill = map.getVillagers().FindAll(v => v.GetComponent<Villager>().isOnGodDuty());
+        return occVill[Random.Range(0, occVill.Count)].GetComponent<Villager>();
+    }
+
+    public Villager getRandomIdle()
+    {
+        List<GameObject> idleVill = map.getVillagers().FindAll(v => !v.GetComponent<Villager>().isOnGodDuty());
+        if (idleVill.Count > 0)
+        {
+            return idleVill[Random.Range(0, idleVill.Count)].GetComponent<Villager>();
+            //Villager vill = idleVill[Random.Range(0, idleVill.Count)];
+            //ActionManager.AddAction(vill, ActionEnum.CHOP, 3, true);   
+        }
+        else
+        {
+            return null;
+        }
     }
 }

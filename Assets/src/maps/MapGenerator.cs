@@ -32,10 +32,16 @@ public class MapGenerator : MonoBehaviour {
         /// Añadimos 2 arboles
         map.AddTree((GameObject)GameObject.Instantiate(treePalette, new Vector3(5, 1, 5), Quaternion.LookRotation(-Vector2.up)));
         map.AddTree((GameObject)GameObject.Instantiate(treePalette, new Vector3(-4, 1, -4), Quaternion.LookRotation(-Vector2.up)));
+        map.AddTree((GameObject)GameObject.Instantiate(treePalette, new Vector3(12, 1, -7), Quaternion.LookRotation(-Vector2.up)));
+        map.AddTree((GameObject)GameObject.Instantiate(treePalette, new Vector3(-6, 1, -9), Quaternion.LookRotation(-Vector2.up)));
+        map.AddTree((GameObject)GameObject.Instantiate(treePalette, new Vector3(9, 1, 9), Quaternion.LookRotation(-Vector2.up)));
+        map.AddTree((GameObject)GameObject.Instantiate(treePalette, new Vector3(-12, 1, -4), Quaternion.LookRotation(-Vector2.up)));
 
         /// añadimos dos campos
         map.AddFarmField((GameObject)GameObject.Instantiate(farmfieldPalette, new Vector3(-5, 1, 5), Quaternion.LookRotation(-Vector2.up)));
         map.AddFarmField((GameObject)GameObject.Instantiate(farmfieldPalette, new Vector3(4, 1, -4), Quaternion.LookRotation(-Vector2.up)));
+        map.AddFarmField((GameObject)GameObject.Instantiate(farmfieldPalette, new Vector3(-7, 1, 2), Quaternion.LookRotation(-Vector2.up)));
+        map.AddFarmField((GameObject)GameObject.Instantiate(farmfieldPalette, new Vector3(5, 1, 3), Quaternion.LookRotation(-Vector2.up)));
 
         /// añadimos almacen
         map.SetWarehouse((GameObject)GameObject.Instantiate(warehousePalette, new Vector3(10, 1, 0), Quaternion.LookRotation(-Vector2.up)));

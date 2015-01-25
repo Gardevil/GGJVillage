@@ -73,6 +73,11 @@ public class Villager : MonoBehaviour {
         movement.moveTo(target);
     }
 
+    public void stop()
+    {
+        movement.stop();
+    }
+
 	public void moveToWareHouse(){
         movement.moveTo(FindManager.getWarehouse());
 	}
