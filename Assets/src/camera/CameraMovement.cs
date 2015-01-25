@@ -15,7 +15,7 @@ public class CameraMovement : MonoBehaviour {
 
     public float maxZoomIn = 3;
     public float maxZoomOut = 0.3f;
-    public float zoomSpeed = 500000;
+    public float zoomSpeed = 0.01f;
 
     float initialOrthoSize;
 

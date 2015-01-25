@@ -7,4 +7,9 @@ public class FarmAction : ExploitResurceAction
     {
         return FindManager.getClosestFarmingField(villager.transform.position);
     }
+
+    protected override string GetSpeakText()
+    {
+        return "Me farming!";
+    }
 }

@@ -7,4 +7,9 @@ public class ChopAction : ExploitResurceAction {
     {
         return FindManager.getClosestTree(villager.transform.position);
     }
+
+    protected override string GetSpeakText()
+    {
+        return "Me chopping!";
+    }
 }
