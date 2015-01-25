@@ -63,17 +63,22 @@ public class Villager : MonoBehaviour {
     {
         this.onGodDuty = onGodDuty;
     }
-
+    /*
 	public void moveTo(Vector3 target){
         movement.moveTo(target);
-	}
+	}*/
+
+    public void moveTo(GameObject target)
+    {
+        movement.moveTo(target);
+    }
 
 	public void moveToWareHouse(){
-        movement.moveTo(FindManager.getWarehousePosition());
+        movement.moveTo(FindManager.getWarehouse());
 	}
 
 	public void moveToTotem(){
-        movement.moveTo(FindManager.getTotemPosition());
+        movement.moveTo(FindManager.getTotem());
 	}
 
     internal bool isOnGodDuty()

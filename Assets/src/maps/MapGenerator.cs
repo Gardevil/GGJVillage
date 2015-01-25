@@ -12,7 +12,7 @@ public class MapGenerator : MonoBehaviour {
     static MapGenerator instance;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         instance = this;
     }

@@ -46,18 +46,18 @@ public class Map {
     {
         this.totem = totem;
     }
-    public Vector3 GetTotemPosition()
+    public GameObject GetTotem()
     {
-        return totem.transform.position;
+        return totem;
     }
 
     public void SetWarehouse(GameObject warehouse)
     {
         this.warehouse = warehouse;
     }
-    public Vector3 GetWarehousePosition()
+    public GameObject GetWarehouse()
     {
-        return warehouse.transform.position;
+        return warehouse;
     }
 
     public void AddVillager(GameObject vill)

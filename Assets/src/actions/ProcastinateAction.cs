@@ -9,7 +9,6 @@ public class ProcastinateAction : BaseAction
 
     public override void Initialize()
     {
-        targetPosition = FindManager.getTotemPosition();
         finished = false;
         inTotem = false;
         villager.moveToTotem();

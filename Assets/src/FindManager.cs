@@ -33,14 +33,14 @@ public class FindManager : MonoBehaviour
         instance.currMap = map;
     }
 
-    public static Vector3 getTotemPosition()
+    public static GameObject getTotem()
     {
-        return instance.currMap.GetTotemPosition();
+        return instance.currMap.GetTotem();
     }
 
-    public static Vector3 getWarehousePosition()
+    public static GameObject getWarehouse()
     {
-        return instance.currMap.GetWarehousePosition();
+        return instance.currMap.GetWarehouse();
     }
 
     private static Resource getClosestResource(List<GameObject> list, Vector3 position)

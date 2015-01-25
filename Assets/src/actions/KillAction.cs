@@ -11,7 +11,7 @@ public class KillAction : BaseAction
     public override void Initialize()
     {
         victim = FindManager.getClosestVillager(villager);
-        villager.moveTo(victim.transform.position);
+        villager.moveTo(victim.gameObject);
         attackingTimeActual = 0;
         chasing = true;
     }
@@ -25,7 +25,7 @@ public class KillAction : BaseAction
         /// estamos persiguiendo a la victima (que se mueve)
         if (!villager.standing && attackingTimeActual==0)
         {            
-            villager.moveTo(victim.transform.position);
+            villager.moveTo(victim.gameObject);
         }
         else
         {
@@ -33,7 +33,7 @@ public class KillAction : BaseAction
             attackingTimeActual += Time.deltaTime;
             if (attackingTimeActual >= attackingTimeMax)
             {
-                villager.moveTo(victim.transform.position);
+                villager.moveTo(victim.gameObject);
                 attackingTimeActual = 0;
                 victim.lifes--;
             }
